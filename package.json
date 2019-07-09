@@ -1,0 +1,31 @@
+{
+  "name": "workshop-api-testing",
+  "version": "1.0.0",
+  "description": "This is Workshop about Api testing in JavaScript",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renardete/workshop-api-testing-js.git"
+  },
+  "keywords": [
+    "api-testing",
+    "dojo",
+    "practice"
+  ],
+  "author": "[Juan Felipe Reyes García] <jreyesg@psl.com.co> (https://github.com/renardete)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/renardete/workshop-api-testing-js/issues"
+  },
+  "homepage": "https://github.com/renardete/workshop-api-testing-js#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4"
+  }
+}
