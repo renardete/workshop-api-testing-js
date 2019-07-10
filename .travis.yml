@@ -5,6 +5,7 @@ directories:
 notifications: 
 email: false
 node_js:
+- '10'
 - '7'
 - '6'
 branches: 
