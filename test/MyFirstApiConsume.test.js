@@ -1,13 +1,12 @@
 const agent = require('superagent-promise')(require('superagent'), Promise);
 const statusCode = require('http-status-codes');
-const chai = require('chai');
 
-const { expect } = chai;
+const urlBase = 'https://httpbin.org';
 
 describe('First Api Tests', () => {
-  it('Consume GET Service', () => agent.get('https://httpbin.org/ip').then((response) => {
-    expect(response.status).to.equal(statusCode.OK);
-    expect(response.body).to.have.property('origin');
+  it('Consume GET Service', () => agent.get(`${urlBase}/ip`).then((response) => {
+    expect(response.status).toBe(statusCode.OK);
+    expect(response.body).toHaveProperty('origin');
   }));
 
   it('Consume GET Service with query parameters', () => {
@@ -17,18 +16,19 @@ describe('First Api Tests', () => {
       city: 'New York'
     };
 
-    return agent.get('https://httpbin.org/get')
+    return agent.get(`${urlBase}/get`)
       .query(query)
       .then((response) => {
-        expect(response.status).to.equal(statusCode.OK);
-        expect(response.body.args).to.eql(query);
+        expect(response.status).toBe(statusCode.OK);
+        expect(response.body.args).toEqual(query);
       });
   });
 
-  it('Consume HEAD Service', () => agent.head('https://httpbin.org/get')
+  it('Consume HEAD Service', () => agent.head(`${urlBase}/get`)
     .then((response) => {
-      expect(response.status).to.equal(statusCode.OK);
-      expect(response.body).to.be.empty;
+      const emptyBody = {};
+      expect(response.status).toBe(statusCode.OK);
+      expect(response.body).toEqual(emptyBody);
     }));
 
   it('Consume PATCH Service', () => {
@@ -38,11 +38,11 @@ describe('First Api Tests', () => {
       city: 'New York'
     };
 
-    return agent.patch('https://httpbin.org/patch')
+    return agent.patch(`${urlBase}/patch`)
       .query(query)
       .then((response) => {
-        expect(response.status).to.equal(statusCode.OK);
-        expect(response.body.args).to.eql(query);
+        expect(response.status).toBe(statusCode.OK);
+        expect(response.body.args).toEqual(query);
       });
   });
 
@@ -54,11 +54,11 @@ describe('First Api Tests', () => {
     };
 
 
-    return agent.put('https://httpbin.org/put')
+    return agent.put(`${urlBase}/put`)
       .query(query)
       .then((response) => {
-        expect(response.status).to.equal(statusCode.OK);
-        expect(response.body.args).to.eql(query);
+        expect(response.status).toBe(statusCode.OK);
+        expect(response.body.args).toEqual(query);
       });
   });
 
@@ -69,11 +69,11 @@ describe('First Api Tests', () => {
       city: 'New York'
     };
 
-    return agent.del('https://httpbin.org/delete')
+    return agent.del(`${urlBase}/delete`)
       .query(query)
       .then((response) => {
-        expect(response.status).to.equal(statusCode.OK);
-        expect(response.body.args).to.eql(query);
+        expect(response.status).toBe(statusCode.OK);
+        expect(response.body.args).toEqual(query);
       });
   });
 });

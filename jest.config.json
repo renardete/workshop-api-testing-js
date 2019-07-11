@@ -1,0 +1,14 @@
+{
+  "verbose": true,
+  "reporters": [
+    "default",
+    [
+      "jest-html-reporters",
+      {
+        "publicPath": "./report",
+        "filename": "ApiTest.html",
+        "expand": true
+      }
+    ]
+  ]
+}
