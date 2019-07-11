@@ -28,7 +28,6 @@ describe('First Api Tests', () => {
   it('Consume HEAD Service', () => agent.head('https://httpbin.org/get')
     .then((response) => {
       expect(response.status).to.equal(statusCode.OK);
-      // eslint-disable-next-line no-unused-expressions
       expect(response.body).to.be.empty;
     }));
 
