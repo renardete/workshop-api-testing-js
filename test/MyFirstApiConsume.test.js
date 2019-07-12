@@ -3,15 +3,15 @@ const statusCode = require('http-status-codes');
 
 const urlBase = 'https://httpbin.org';
 describe(`Given the ${urlBase} is Up`, () => {
-  describe('When the /ip resource is called', () => {
-    it('Then it should respond OK and have property origin', () => agent.get(`${urlBase}/ip`).then((response) => {
+  describe('when the /ip resource is called', () => {
+    it('then it should respond OK and have property origin', () => agent.get(`${urlBase}/ip`).then((response) => {
       expect(response.status).toBe(statusCode.OK);
       expect(response.body).toHaveProperty('origin');
     }));
   });
 
-  describe('When the /ip resource is called with QueryParams', () => {
-    it('Then it should respond OK and have property origin', () => {
+  describe('when the /ip resource is called with QueryParams', () => {
+    it('then it should respond OK and have property origin', () => {
       const query = {
         name: 'John',
         age: '31',
@@ -27,8 +27,8 @@ describe(`Given the ${urlBase} is Up`, () => {
     });
   });
 
-  describe('When the /get resource is called with the HEAD method', () => {
-    it('Then it should respond OK and the body must be empty', () => agent.head(`${urlBase}/get`)
+  describe('when the /get resource is called with the HEAD method', () => {
+    it('then it should respond OK and the body must be empty', () => agent.head(`${urlBase}/get`)
       .then((response) => {
         const emptyBody = {};
         expect(response.status).toBe(statusCode.OK);
@@ -36,8 +36,8 @@ describe(`Given the ${urlBase} is Up`, () => {
       }));
   });
 
-  describe('When the /patch resource is called with QueryParams', () => {
-    it('Then it should respond OK and the body must contain the QueryParams in the request', () => {
+  describe('when the /patch resource is called with QueryParams', () => {
+    it('then it should respond OK and the body must contain the QueryParams in the request', () => {
       const query = {
         name: 'John',
         age: '31',
@@ -53,8 +53,8 @@ describe(`Given the ${urlBase} is Up`, () => {
     });
   });
 
-  describe('When the /put resource is called with QueryParams', () => {
-    it('Then it should respond OK and the body must contain the QueryParams in the request', () => {
+  describe('when the /put resource is called with QueryParams', () => {
+    it('then it should respond OK and the body must contain the QueryParams in the request', () => {
       const query = {
         name: 'John',
         age: '31',
@@ -69,8 +69,8 @@ describe(`Given the ${urlBase} is Up`, () => {
     });
   });
 
-  describe('When the /delete resource is called with QueryParams', () => {
-    it('Consume DELETE Service', () => {
+  describe('when the /delete resource is called with QueryParams', () => {
+    it('then it should respond OK and the body must contain the QueryParams in the request', () => {
       const query = {
         name: 'John',
         age: '31',
