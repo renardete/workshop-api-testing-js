@@ -4,7 +4,8 @@
   "description": "This is Workshop about Api testing in JavaScript",
   "main": "index.js",
   "directories": {
-    "test": "test"
+    "test": "test",
+    "debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand"
   },
   "scripts": {
     "test": "npm run lint && jest --config jest.config.json",
@@ -35,6 +36,8 @@
     "jest-html-reporters": "^1.1.8"
   },
   "dependencies": {
+    "download": "^7.1.0",
+    "sha1-file": "^1.0.4",
     "superagent": "^5.1.0",
     "superagent-promise": "^1.1.0"
   }
