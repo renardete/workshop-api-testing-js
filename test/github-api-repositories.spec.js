@@ -68,6 +68,7 @@ describe(`Given than ${urlBase} is UP`, () => {
       zipUrl = await jasmineAwesomeRepository.archive_url.replace('{archive_format}', 'zipball');
       zipFilePath = './file-downloads/jasmine.zip';
       zipUrl = await zipUrl.replace('{/ref}', '/master');
+      fs.mkdirSync('./file-downloads');
       await agent
         .get(zipUrl)
         .auth('token', process.env.ACCESS_TOKEN)
