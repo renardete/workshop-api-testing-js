@@ -12,6 +12,7 @@ describe(`Given than ${urlBase} is UP`, () => {
     beforeAll(async () => {
       response = await agent
         .get(`${urlBase}/users/${githubUserName}`)
+        .auth('token', process.env.ACCESS_TOKEN)
         .set('User-Agent', 'agent');
     });
 
@@ -29,9 +30,11 @@ describe(`Given than ${urlBase} is UP`, () => {
     beforeAll(async () => {
       response = await agent
         .get(`${urlBase}/users/${githubUserName}`)
+        .auth('token', process.env.ACCESS_TOKEN)
         .set('User-Agent', 'agent');
       response = await agent
         .get(response.body.repos_url)
+        .auth('token', process.env.ACCESS_TOKEN)
         .set('User-Agent', 'agent');
       jasmineAwesomeRepository = await response.body
         .find(respository => respository.name === 'jasmine-awesome-report');
@@ -54,21 +57,25 @@ describe(`Given than ${urlBase} is UP`, () => {
     beforeAll(async () => {
       response = await agent
         .get(`${urlBase}/users/${githubUserName}`)
+        .auth('token', process.env.ACCESS_TOKEN)
         .set('User-Agent', 'agent');
       response = await agent
         .get(response.body.repos_url)
+        .auth('token', process.env.ACCESS_TOKEN)
         .set('User-Agent', 'agent');
       jasmineAwesomeRepository = await response.body
         .find(respository => respository.name === 'jasmine-awesome-report');
       zipUrl = await jasmineAwesomeRepository.archive_url.replace('{archive_format}', 'zipball');
       zipFilePath = './file-downloads/jasmine.zip';
       zipUrl = await zipUrl.replace('{/ref}', '/master');
-      agent
+      await agent
         .get(zipUrl)
+        .auth('token', process.env.ACCESS_TOKEN)
         .set('User-Agent', 'agent')
         .pipe(fs.createWriteStream(zipFilePath));
       exists = fs.existsSync(zipFilePath);
     });
+
     it('Zip download', async () => {
       expect(exists).toBe(true);
     }, 15000);
@@ -82,14 +89,17 @@ describe(`Given than ${urlBase} is UP`, () => {
 
     beforeAll(async () => {
       response = await agent.get(`${urlBase}/users/${githubUserName}`)
+        .auth('token', process.env.ACCESS_TOKEN)
         .set('User-Agent', 'agent');
       response = await agent.get(response.body.repos_url)
+        .auth('token', process.env.ACCESS_TOKEN)
         .set('User-Agent', 'agent');
       jasmineAwesomeRepository = await response.body
         .find(respository => respository.name === 'jasmine-awesome-report');
       contentUrl = await jasmineAwesomeRepository.contents_url.replace('/{+path}', '');
       response = await agent
         .get(contentUrl)
+        .auth('token', process.env.ACCESS_TOKEN)
         .set('User-Agent', 'agent');
       readmeInfo = await response.body.find(content => content.name === 'README.md');
     });
@@ -111,14 +121,17 @@ describe(`Given than ${urlBase} is UP`, () => {
 
     beforeAll(async () => {
       response = await agent.get(`${urlBase}/users/${githubUserName}`)
+        .auth('token', process.env.ACCESS_TOKEN)
         .set('User-Agent', 'agent');
       response = await agent.get(response.body.repos_url)
+        .auth('token', process.env.ACCESS_TOKEN)
         .set('User-Agent', 'agent');
       jasmineAwesomeRepository = await response.body
         .find(respository => respository.name === 'jasmine-awesome-report');
       contentUrl = await jasmineAwesomeRepository.contents_url.replace('/{+path}', '');
       response = await agent
         .get(contentUrl)
+        .auth('token', process.env.ACCESS_TOKEN)
         .set('User-Agent', 'agent');
       readmeInfo = await response.body.find(content => content.name === 'README.md');
       await download(readmeInfo.download_url, 'file-downloads');
