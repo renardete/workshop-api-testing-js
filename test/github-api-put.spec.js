@@ -31,15 +31,15 @@ describe(`Given ${urlBase} domain is up`, () => {
     const followedName = 'aperdomob';
     const followedId = 17033942;
     let response = {};
-    let followedUser = {}:
+    let followedUser = {};
 
-      beforeAll(async () => {
-        response = await agent
-          .get(followUrl)
-          .auth('token', process.env.ACCESS_TOKEN)
-          .set('User-Agent', 'agent');
-        followedUser = response.body.find(user => user.login === followedName);
-      });
+    beforeAll(async () => {
+      response = await agent
+        .get(followUrl)
+        .auth('token', process.env.ACCESS_TOKEN)
+        .set('User-Agent', 'agent');
+      followedUser = response.body.find(user => user.login === followedName);
+    });
 
     it(`then the response should contain status-code OK (200) and the body must contain login: ${followedName} and id: ${followedId}`, async () => {
       expect(response.statusCode).toBe(statusCode.OK);
