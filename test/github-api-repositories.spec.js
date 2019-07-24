@@ -74,7 +74,7 @@ describe(`Given than ${urlBase} is UP`, () => {
         .auth('token', process.env.ACCESS_TOKEN)
         .set('User-Agent', 'agent')
         .pipe(fs.createWriteStream(zipFilePath));
-      exists = fs.existsSync(zipFilePath);
+      exists = await fs.existsSync(zipFilePath);
     });
 
     it('Zip download', async () => {

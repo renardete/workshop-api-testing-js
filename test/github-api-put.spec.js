@@ -50,18 +50,23 @@ describe(`Given ${urlBase} domain is up`, () => {
 
   describe('when https://api.github.com/user/following/aperdomob resource is calles', () => {
     const followUrl = `${urlBase}/user/following/aperdomob`;
-    it('then the response should contain status-code = 204 and the body must be empty', async () => {
-      const response1 = await agent
+    let originalResponse = {};
+    let repeatedResponse = {};
+
+    beforeAll(async () => {
+      originalResponse = await agent
         .put(followUrl)
         .auth('token', process.env.ACCESS_TOKEN)
         .set('User-Agent', 'agent');
 
-      const response2 = await agent
+      repeatedResponse = await agent
         .put(followUrl)
         .auth('token', process.env.ACCESS_TOKEN)
         .set('User-Agent', 'agent');
-      expect(response1.statusCode).toBe(response2.statusCode);
-      expect(response1.body).toEqual(response2.body);
+    });
+    it('then the response should contain status-code = 204 and the body must be empty', async () => {
+      expect(originalResponse.statusCode).toBe(repeatedResponse.statusCode);
+      expect(originalResponse.body).toEqual(repeatedResponse.body);
     });
   });
 });
