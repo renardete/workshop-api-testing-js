@@ -7,8 +7,17 @@ describe(`Given ${urlBase} domain is up`, () => {
   describe('when https://api.github.com/user/following/aperdomob resource is calles', () => {
     const followUrl = `${urlBase}/user/following/aperdomob`;
     const emptyBody = {};
+    let response = {};
+
+    beforeAll(async () => {
+      response = await agent
+        .put(followUrl)
+        .auth('token', process.env.ACCESS_TOKEN)
+        .set('User-Agent', 'agent');
+    });
+
     it('then the response should contain status-code = 204 and the body must be empty', async () => {
-      const response = await agent
+      response = await agent
         .put(followUrl)
         .auth('token', process.env.ACCESS_TOKEN)
         .set('User-Agent', 'agent');
@@ -21,13 +30,18 @@ describe(`Given ${urlBase} domain is up`, () => {
     const followUrl = `${urlBase}/user/following`;
     const followedName = 'aperdomob';
     const followedId = 17033942;
-    it(`then the response should contain status-code OK (200) and the body must contain login: ${followedName} and id: ${followedId}`, async () => {
-      const response = await agent
-        .get(followUrl)
-        .auth('token', process.env.ACCESS_TOKEN)
-        .set('User-Agent', 'agent');
-      const followedUser = response.body.find(user => user.login === followedName);
+    let response = {};
+    let followedUser = {}:
 
+      beforeAll(async () => {
+        response = await agent
+          .get(followUrl)
+          .auth('token', process.env.ACCESS_TOKEN)
+          .set('User-Agent', 'agent');
+        followedUser = response.body.find(user => user.login === followedName);
+      });
+
+    it(`then the response should contain status-code OK (200) and the body must contain login: ${followedName} and id: ${followedId}`, async () => {
       expect(response.statusCode).toBe(statusCode.OK);
       expect(followedUser.login).toBe(followedName);
       expect(followedUser.id).toBe(followedId);
