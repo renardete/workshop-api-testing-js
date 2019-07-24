@@ -58,7 +58,7 @@ describe(`Given ${urlBase} domain is up`, () => {
 
 
   describe('', () => {
-    const emptyString = '';
+    const emptyString = null;
     let responsePost = {};
     let responsePut = {};
     const repoName = 'workshop-api-testing-js';
@@ -87,19 +87,17 @@ describe(`Given ${urlBase} domain is up`, () => {
 
     describe(`when ${urlBase}/repos/${userName}/${repoName}/issues resource is called`, () => {
       it(`then the response should contain the issue title ${bodyPost.title} and body must be empty`, async () => {
-        console.log('POST -----------> ', responsePost.body);
         expect(responsePost.status).toBe(statusCode.CREATED);
         expect(responsePost.body.title).toBe(bodyPost.title);
         expect(responsePost.body.body).toEqual(emptyString);
       });
     });
 
-    describe(`when ${urlBase}/repos/${userName}/${repoName}/issues/${responsePost.body.number} resource is called`, () => {
+    describe(`when ${urlBase}/repos/${userName}/${repoName}/issues/:numberIssue resource is called`, () => {
       it('then the response should contain the name and id of the selected repository', async () => {
-        console.log('PUT -----------> ', responsePut.body);
         expect(responsePut.status).toBe(statusCode.OK);
         expect(responsePut.body.title).toBe(responsePost.body.title);
-        expect(responsePost.body.body).toEqual(bodyPatch.body);
+        expect(responsePut.body.body).toEqual(bodyPatch.body);
       });
     });
   });
