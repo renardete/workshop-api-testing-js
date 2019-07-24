@@ -132,4 +132,10 @@ $RECYCLE.BIN/
 ## Reports ##
 report
 
+## Temporal file downloads for test##
+file-downloads
+
+## .vscode configuration ##
+.vscode
+
 # End of https://www.gitignore.io/api/node,windows,visualstudiocode
