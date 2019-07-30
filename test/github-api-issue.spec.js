@@ -48,7 +48,6 @@ describe(`Given ${urlBase} domain is up`, () => {
     let responsePut = {};
     const repoName = 'workshop-api-testing-js';
 
-
     describe(`when ${urlBase}/repos/${userName}/${repoName}/issues resource is called`, () => {
       const bodyPost = {
         title: 'A new issue '
