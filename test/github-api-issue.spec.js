@@ -30,20 +30,10 @@ describe(`Given ${urlBase} domain is up`, () => {
     let apiWorkshopRepo = {};
 
     beforeAll(async () => {
-      response = await agent
-        .get(loggedUser)
-        .auth('token', process.env.ACCESS_TOKEN)
-        .set('User-Agent', 'agent');
-      response = await agent
-        .get(response.body.repos_url)
-        .auth('token', process.env.ACCESS_TOKEN)
-        .set('User-Agent', 'agent');
+      response = await httpUtils.authGetSync(loggedUser);
+      response = await httpUtils.authGetSync(response.body.repos_url);
       apiWorkshopRepo = response.body.find(respository => respository.name === repoName);
-
-      response = await agent
-        .get(`${urlBase}/repos/${userName}/${repoName}`)
-        .auth('token', process.env.ACCESS_TOKEN)
-        .set('User-Agent', 'agent');
+      response = await httpUtils.authGetSync(`${urlBase}/repos/${userName}/${repoName}`);
     });
 
     it('then the response should contain the name and id of the selected repository', async () => {
