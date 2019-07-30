@@ -17,4 +17,5 @@ describe(`Given ${urlBase} domain is up`, () => {
       expect(response.headers.location).toBe()
     });
   });
+
 });
