@@ -12,7 +12,6 @@ describe(`Given ${urlBase} domain is up`, () => {
 
     beforeAll(async () => {
       response = await httpUtils.authGetSync(loggedUser);
-
       response = await httpUtils.authGetSync(response.body.repos_url);
     });
 

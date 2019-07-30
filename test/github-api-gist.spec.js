@@ -39,7 +39,7 @@ describe(`Given ${urlBase} domain is up and gists resource is public`, () => {
         .toBe(bodyGist.files.hello_world.content);
     });
 
-    it('then the resource must be created', () => {
+    it('and the resource must be created', () => {
       expect(responseResourceGetOriginal.status).toBe(statusCode.OK);
       expect(responseResourceGetOriginal.body.id).toBe(responsePost.body.id);
     });
