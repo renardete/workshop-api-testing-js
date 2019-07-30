@@ -11,7 +11,6 @@ describe(`Given ${urlBase} domain is up`, () => {
     let response = {};
 
     beforeAll(async () => {
-
       response = await httpUtils.authGetSync(loggedUser);
 
       response = await httpUtils.authGetSync(response.body.repos_url);
@@ -30,12 +29,10 @@ describe(`Given ${urlBase} domain is up`, () => {
     let apiWorkshopRepo = {};
 
     beforeAll(async () => {
-
       response = await httpUtils.authGetSync(loggedUser);
       response = await httpUtils.authGetSync(response.body.repos_url);
       apiWorkshopRepo = response.body.find(respository => respository.name === repoName);
       response = await httpUtils.authGetSync(`${urlBase}/repos/${userName}/${repoName}`);
-
     });
 
     it('then the response should contain the name and id of the selected repository', async () => {
@@ -73,7 +70,6 @@ describe(`Given ${urlBase} domain is up`, () => {
     });
 
     describe(`when ${urlBase}/repos/${userName}/${repoName}/issues/:numberIssue resource is called`, () => {
-
       const bodyPatch = {
         body: 'new boddy for issue'
       };
