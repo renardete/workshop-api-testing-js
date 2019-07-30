@@ -2,7 +2,6 @@ const agent = require('superagent-promise')(require('superagent'), Promise);
 const statusCode = require('http-status-codes');
 const httpUtils = require('../utils/http-utils');
 
-
 const urlBase = 'https://api.github.com';
 const userName = 'renardete';
 
@@ -12,6 +11,7 @@ describe(`Given ${urlBase} domain is up`, () => {
     let response = {};
 
     beforeAll(async () => {
+
       response = await httpUtils.authGetSync(loggedUser);
 
       response = await httpUtils.authGetSync(response.body.repos_url);
@@ -30,10 +30,12 @@ describe(`Given ${urlBase} domain is up`, () => {
     let apiWorkshopRepo = {};
 
     beforeAll(async () => {
+
       response = await httpUtils.authGetSync(loggedUser);
       response = await httpUtils.authGetSync(response.body.repos_url);
       apiWorkshopRepo = response.body.find(respository => respository.name === repoName);
       response = await httpUtils.authGetSync(`${urlBase}/repos/${userName}/${repoName}`);
+
     });
 
     it('then the response should contain the name and id of the selected repository', async () => {
@@ -48,6 +50,7 @@ describe(`Given ${urlBase} domain is up`, () => {
     let responsePost = {};
     let responsePut = {};
     const repoName = 'workshop-api-testing-js';
+
 
     describe(`when ${urlBase}/repos/${userName}/${repoName}/issues resource is called`, () => {
       const bodyPost = {
@@ -70,6 +73,7 @@ describe(`Given ${urlBase} domain is up`, () => {
     });
 
     describe(`when ${urlBase}/repos/${userName}/${repoName}/issues/:numberIssue resource is called`, () => {
+
       const bodyPatch = {
         body: 'new boddy for issue'
       };
