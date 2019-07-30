@@ -43,7 +43,6 @@ describe(`Given ${urlBase} domain is up`, () => {
     });
   });
 
-
   describe('and issues service is up', () => {
     const emptyString = null;
     let responsePost = {};
