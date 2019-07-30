@@ -26,7 +26,7 @@ describe(`Given ${urlBase} domain is up`, () => {
       response = await httpUtils.authGetSync(redirectTestUrl);
     });
 
-    it('then the response should contain status=301 and location header https://github.com/aperdomob/new-redirect-test', () => {
+    it('then the response should contain status=200 and text should contain <!DOCTYPE html>', () => {
       expect(response.status).toBe(statusCode.OK);
       expect(response.res.text).toMatch('<!DOCTYPE html>');
     });
