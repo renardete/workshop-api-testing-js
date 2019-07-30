@@ -63,7 +63,7 @@ describe(`Given ${urlBase} domain is up and gists resource is public`, () => {
       expect(responseDelete.status).toBe(statusCode.NO_CONTENT);
     });
 
-    it('then the resource must not exists', () => {
+    it('and the resource must not exists', () => {
       expect(responseResourceGetrepeated.status).toBe(statusCode.NOT_FOUND);
       expect(responseResourceGetrepeated.body.message).toBe('Not Found');
     });
