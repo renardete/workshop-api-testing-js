@@ -1,4 +1,3 @@
-// const statusCode = require('http-status-codes');
 const httpUtils = require('../utils/http-utils');
 
 const urlBase = 'https://api.github.com';
