@@ -7,6 +7,7 @@ describe(`Given ${urlBase} domain is up`, () => {
     let time = null;
     const usersUrl = `${urlBase}/users`;
     const expectedTime = 5000;
+
     beforeAll(async () => {
       time = await httpUtils.authGetResponseTimeSync(usersUrl);
     });
