@@ -17,8 +17,7 @@ module.exports = {
       .set('User-Agent', 'agent')
       .ok(res => {
         if (res.status === 301)
-        
-        return res;
+          return res;
       });
     return response;
   },
@@ -33,6 +32,7 @@ module.exports = {
       }));
 
     return ResponseTime;
+
   }
 }
 
