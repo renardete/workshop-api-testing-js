@@ -16,10 +16,8 @@ module.exports = {
       .set('User-Agent', 'agent')
       .ok(res => {
         if (res.status === 301)
-        
-        return res;
+          return res;
       });
-    console.log(response.status)
     return response;
   }
 }
