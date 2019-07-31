@@ -23,7 +23,7 @@ module.exports = {
     return response;
   },
   authGetResponseTimeSync: async function authResponseTimeSync(url) {
-    let ResponseTime = Number.MAX_SAFE_INTEGER;
+    let ResponseTime = 9999;
     await agent
       .get(url)
       .auth('token', process.env.ACCESS_TOKEN)
