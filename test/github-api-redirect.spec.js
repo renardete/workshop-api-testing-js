@@ -1,4 +1,4 @@
-// const statusCode = require('http-status-codes');
+const statusCode = require('http-status-codes');
 const httpUtils = require('../utils/http-utils');
 
 const urlBase = 'https://api.github.com';
@@ -13,8 +13,8 @@ describe(`Given ${urlBase} domain is up`, () => {
     });
 
     it('then', () => {
-      expect(response.status).toBe(301);
-      expect(response.headers.location).toBe()
+      expect(response.status).toBe(statusCode.MOVED_TEMPORARILY);
+      expect(response.headers.location).toBe();
     });
   });
 });
