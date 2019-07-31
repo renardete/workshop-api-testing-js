@@ -17,8 +17,8 @@ module.exports = {
       .set('User-Agent', 'agent')
       .ok(res => {
 
-        if (res.status === 301)        
-        return res;
+        if (res.status === 301)
+          return res;
       });
     return response;
   },
@@ -28,11 +28,9 @@ module.exports = {
       .get(url)
       .auth('token', process.env.ACCESS_TOKEN)
       .set('User-Agent', 'agent')
-      .use(responseTime( async (req, time) => {
+      .use(responseTime(async (req, time) => {
         ResponseTime = time;
       }));
     return ResponseTime;
   }
 }
-
-
