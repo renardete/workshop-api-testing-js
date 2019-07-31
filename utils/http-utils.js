@@ -16,6 +16,7 @@ module.exports = {
       .auth('token', process.env.ACCESS_TOKEN)
       .set('User-Agent', 'agent')
       .ok(res => {
+
         if (res.status === 301)        
         return res;
       });
