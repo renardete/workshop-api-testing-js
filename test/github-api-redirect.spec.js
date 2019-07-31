@@ -4,10 +4,10 @@ const httpUtils = require('../utils/http-utils');
 const urlBase = 'https://api.github.com';
 
 describe(`Given ${urlBase} domain is up`, () => {
-  describe('when https://github.com/aperdomob/redirect-test resource is called with HEAD verb', () => {
-    const redirectTestUrl = 'https://github.com/aperdomob/redirect-test';
-    let response = {};
+  const redirectTestUrl = 'https://github.com/aperdomob/redirect-test';
+  let response = {};
 
+  describe('when https://github.com/aperdomob/redirect-test resource is called with HEAD verb', () => {
     beforeAll(async () => {
       response = await httpUtils.authHeadSync(redirectTestUrl);
     });
@@ -19,10 +19,7 @@ describe(`Given ${urlBase} domain is up`, () => {
   });
 
   describe('when https://github.com/aperdomob/redirect-test resource is called with GET verb', () => {
-    const redirectTestUrl = 'https://github.com/aperdomob/redirect-test';
-    let response = {};
-
-    beforeAll(async () => {
+     beforeAll(async () => {
       response = await httpUtils.authGetSync(redirectTestUrl);
     });
 
