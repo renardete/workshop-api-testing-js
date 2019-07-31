@@ -19,7 +19,7 @@ describe(`Given ${urlBase} domain is up`, () => {
   });
 
   describe('when https://github.com/aperdomob/redirect-test resource is called with GET verb', () => {
-     beforeAll(async () => {
+    beforeAll(async () => {
       response = await httpUtils.authGetSync(redirectTestUrl);
     });
 
