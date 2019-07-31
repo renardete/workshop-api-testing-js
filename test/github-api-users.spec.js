@@ -16,4 +16,28 @@ describe(`Given ${urlBase} domain is up`, () => {
       expect(time).toBeLessThan(expectedTime);
     });
   });
+
+  describe(`when resource ${urlBase}/users?per_page=10 is called `, () => {
+    let response = {};
+    beforeAll(async () => {
+      response = await httpUtils.authGetSync(`${urlBase}/users?per_page=10`);
+    });
+
+    it('then the body of the response should contain 10 users', () => {
+      const numberUsers = response.body.length;
+      expect(numberUsers).toBe(10);
+    });
+  });
+
+  describe(`when resource ${urlBase}/users?per_page=50 is called `, () => {
+    let response = {};
+    beforeAll(async () => {
+      response = await httpUtils.authGetSync(`${urlBase}/users?per_page=50`);
+    });
+
+    it('then the body of the response should contain 50 users', () => {
+      const numberUsers = response.body.length;
+      expect(numberUsers).toBe(50);
+    });
+  });
 });
