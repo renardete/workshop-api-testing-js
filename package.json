@@ -36,6 +36,7 @@
     "jest-html-reporters": "^1.1.8"
   },
   "dependencies": {
+    "@pact-foundation/pact": "^9.0.1",
     "download": "^7.1.0",
     "sha1-file": "^1.0.4",
     "superagent": "^5.1.0",
