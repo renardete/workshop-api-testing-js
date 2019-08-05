@@ -3,10 +3,7 @@
 const { matchers } = require('jest-json-schema');
 
 const agent = require('superagent');
-const { listPublicEventsSchema } = require('../schema/list-public-events-schema');
-
-const { listPublicEventsExp } = require('../schema/list-public-events-exp');
-
+const { listPublicEventsSchema, publicActorSchema } = require('../schema/list-public-events-schema');
 
 expect.extend(matchers);
 
@@ -17,20 +14,27 @@ const urlEvents = `${urlBase}/events`;
 describe('Given event Github API resources', () => {
   describe('When wanna verify the List public events', () => {
     let EXPECTED_BODY;
-    const schema = listPublicEventsSchema;
+    const generalSchema = listPublicEventsSchema;
+    const actorSchema = publicActorSchema;
 
-    beforeEach(async () => {
+    beforeAll(async () => {
       EXPECTED_BODY = await agent
         .get(urlEvents)
         .set('User-Agent', 'agent')
         .auth('token', process.env.ACCESS_TOKEN);
-      EXPECTED_BODY.body = listPublicEventsExp;
     });
 
 
-    it('then the body should have fulfill the pact', async (done) => {
+    it('then the body should match the general schema', async (done) => {
       for (let i = 0; i < EXPECTED_BODY.body.length; i += 1) {
-        expect(EXPECTED_BODY.body[0]).toMatchSchema(schema);
+        expect(EXPECTED_BODY.body[i]).toMatchSchema(generalSchema);
+      }
+      done();
+    });
+
+    it('and the actor should match actor-schema', (done) => {
+      for (let i = 0; i < EXPECTED_BODY.body.length; i += 1) {
+        expect(EXPECTED_BODY.body[i].actor).toMatchSchema(actorSchema);
       }
       done();
     });
