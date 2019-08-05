@@ -2,7 +2,6 @@ const agent = require('superagent-promise')(require('superagent'), Promise);
 const agentResponseTime = require('superagent-response-time');
 const statusCode = require('http-status-codes');
 
-
 module.exports = {
   authGetSync: async (url) => {
     const response = await agent
