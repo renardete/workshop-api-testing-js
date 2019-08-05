@@ -1,6 +1,6 @@
 {
-  "verbose": true,
-  "reporters": [
+  "verbose" : true,
+  "reporters" : [
     "default",
     [
       "jest-html-reporters",
