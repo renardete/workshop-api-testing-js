@@ -14,7 +14,7 @@ describe(`Given ${urlBase} domain is up`, () => {
     beforeAll(async () => {
       time = await httpUtils.authGetResponseTimeSync(usersUrl);
     });
-    it(`then the response time should be inferior to ${expectedTime} miliseconds`, () => {
+    it(`then the response time should be inferior to ${expectedTime} milliseconds`, () => {
       expect(time).toBeLessThan(expectedTime);
     });
   });
@@ -42,7 +42,6 @@ describe(`Given ${urlBase} domain is up`, () => {
     it('then the body of the response should contain a list of 50 users', () => {
       const numberUsers = response.body.length;
       expect(numberUsers).toBe(50);
-
     });
   });
 });
