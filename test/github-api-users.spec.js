@@ -8,6 +8,7 @@ describe(`Given ${urlBase} domain is up`, () => {
   describe(`when resource ${urlBase}/users is called `, () => {
     let time = null;
     const usersUrl = `${urlBase}/users`;
+
     const expectedTime = 5000;
 
     beforeAll(async () => {
@@ -41,6 +42,7 @@ describe(`Given ${urlBase} domain is up`, () => {
     it('then the body of the response should contain a list of 50 users', () => {
       const numberUsers = response.body.length;
       expect(numberUsers).toBe(50);
+
     });
   });
 });
